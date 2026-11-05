@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dokumentasi Proyek Akhir: Entertainment Hub - BINUS University</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --primary: #E50914;
+      --secondary: #6366F1;
+      --emerald: #10B981;
+      --match: #46D369;
+      --gold: #F59E0B;
+      --bg: #141414;
+      --card: #181818;
+      --card-border: #2A2A2A;
+      --text: #FFFFFF;
+      --text-muted: #A3A3A3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .header {
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(229, 9, 20, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 30px; font-weight: 800; color: #FFFFFF; line-height: 1.2; }
+    h2 { font-size: 20px; font-weight: 700; color: #FFFFFF; margin-top: 36px; margin-bottom: 16px; border-left: 4px solid var(--primary); padding-left: 12px; }
+    h3 { font-size: 15px; font-weight: 700; color: #E2E8F0; margin-top: 20px; margin-bottom: 10px; }
+    p, li { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; }
+    ul, ol { padding-left: 20px; margin-bottom: 16px; }
+    li { margin-bottom: 6px; }
+    strong { color: #FFFFFF; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12.5px;
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border: 1px solid var(--card-border);
+    }
+    th {
+      background: #1A2234;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      background: #1E293B;
+      color: #F43F5E;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    pre {
+      background: #070A11;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #CBD5E1;
+      margin: 14px 0 20px 0;
+    }
+    .card-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-success { background: rgba(16, 185, 129, 0.15); color: #10B981; }
+    .footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      font-size: 12px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    @media print {
+      body { background: #FFFFFF; color: #000000; padding: 0; }
+      .container { background: #FFFFFF; color: #000000; border: none; box-shadow: none; padding: 0; }
+      th { background: #E2E8F0; color: #000000; }
+      td, th { border-color: #CBD5E1; color: #000000; }
+      h1, h2, h3, strong { color: #000000; }
+      p, li { color: #334155; }
+      pre, code { background: #F1F5F9; color: #0F172A; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="tag">Tugas Akhir Pemrograman Web & Mobile • BINUS University</div>
+    <h1>BINUSFLIX — MINI SPECIALIZED ENTERTAINMENT PLATFORM</h1>
+    <p style="margin-top: 6px; font-size: 13px;">BINUS University • Pemenuhan Rubrik Penilaian LO 3 (10 Pts Figma, 15 Pts Web, 15 Pts Mobile, 15 Pts Server/DB)</p>
+  </div>
+
+  <h2>1. Ringkasan Eksekutif & Deskripsi Proyek</h2>
+  <p>
+    <strong>BINUSFLIX</strong> adalah platform hiburan digital berskala spesialisasi (<em>mini specialized platform</em>) resmi bernuansa merah tegas Almamater BINUS yang menyediakan informasi terpadu mengenai <strong>Film Layar Lebar</strong>, <strong>Serial Televisi</strong>, dan <strong>Musik</strong>. Pengguna dapat membaca ringkasan sinopsis, melihat kartu foto pemeran/karakter, menonton video trailer resmi (YouTube), mendengarkan sampel audio lagu 30 detik (Apple Music / iTunes), membaca ulasan komunitas, memberikan penilaian rating bintang, serta mengelola daftar koleksi tontonan favorit (<em>watchlist</em>) yang tersimpan di cloud MongoDB Atlas.
+  </p>
+  <p>
+    Aplikasi ini tersedia secara penuh dalam dua wujud:
+  </p>
+  <ul>
+    <li><strong>Aplikasi Web</strong>: Menggunakan React JS (Vite), Tailwind CSS, dan React Router.</li>
+    <li><strong>Aplikasi Mobile</strong>: Menggunakan React Native dan Expo (SDK 52+) dengan Expo Go QR support.</li>
+    <li><strong>Aplikasi Server</strong>: RESTful API Node.js / Express.js dengan autentikasi JWT dan MongoDB Atlas.</li>
+  </ul>
+
+  <h2>2. Pemetaan Rubrik Penilaian LO 3</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Komponen Penilaian</th>
+        <th>Bobot</th>
+        <th>Implementasi pada Proyek</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>[LO 3 – 10 Points] Desain UI/UX Figma</strong></td>
+        <td>10 Poin</td>
+        <td>Desain Figma, Design Tokens, Typography, Color Palette, Wireframe, dan User Flow terperinci.</td>
+        <td><span class="badge badge-success">✅ Selesai</span></td>
+      </tr>
+      <tr>
+        <td><strong>[LO 3 – 15 Points] Aplikasi Web (Minimal 4 Halaman)</strong></td>
+        <td>15 Poin</td>
+        <td>Memiliki 6 Halaman: Register, Login, Beranda (Hero + Live Search), Detail Konten (Trailer + Audio + Review), Favorit, Profil.</td>
+        <td><span class="badge badge-success">✅ Selesai (6 Halaman)</span></td>
+      </tr>
+      <tr>
+        <td><strong>[LO 3 – 15 Points] Aplikasi Mobile (Minimal 4 Halaman)</strong></td>
+        <td>15 Poin</td>
+        <td>Memiliki 6 Screen Expo: Login, Register, Home, Detail (Trailer/Audio player + Review), Favorites, Profile.</td>
+        <td><span class="badge badge-success">✅ Selesai (6 Screens)</span></td>
+      </tr>
+      <tr>
+        <td><strong>[LO 3 – 15 Points] Server Backend & Database</strong></td>
+        <td>15 Poin</td>
+        <td>Node.js/Express.js REST API + MongoDB Atlas, Enkripsi Bcrypt, JWT Auth, Seeder akun demo.</td>
+        <td><span class="badge badge-success">✅ Selesai</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Desain UI/UX Figma (LO 3 – 10 Points)</h2>
+  <div class="card-box">
+    <p><strong>Tautan Proyek Figma:</strong> <a href="https://www.figma.com/design/entertainment-hub-binus-2026" style="color: #E50914; font-weight: bold;">https://www.figma.com/design/entertainment-hub-binus-2026</a></p>
+    <p><strong>Tema Visual:</strong> BINUSFLIX Dark Cinema Theme (Paduan Merah Almamater BINUS & Obsidian Dark)</p>
+    <p><strong>Elemen Khas:</strong> Sub-Navbar Sticky dengan Tombol Kembali & Breadcrumbs, Billboard Hero Banner Teks Rata Kiri, Galeri Foto Aktor & Karakter Pemeran, Top 10 Giant Outlined Numbers, Tombol Putar Putih Solid, Match Score Hijau ("98% Cocok"), Baris Rel Geser Horizontal.</p>
+    <p><strong>Palet Warna:</strong> Background Obsidian (<code>#07080A</code>), Card Surface (<code>#0D1017</code>), BINUS Crimson Red (<code>#E50914</code>), Electric Cyan (<code>#00D2FF</code>), Match Green (<code>#22C55E</code>), Gold Star (<code>#FFB800</code>).</p>
+  </div>
+
+  <h2>4. Akun Demo Pengujian (Pre-Seeded)</h2>
+  <div class="card-box">
+    <p>Tersedia tombol <strong>"Isi Otomatis"</strong> pada halaman Login Web & Mobile:</p>
+    <ul>
+      <li><strong>Email:</strong> <code>demo@binus.ac.id</code></li>
+      <li><strong>Password:</strong> <code>password123</code></li>
+      <li><strong>Username:</strong> <code>binusian_user</code></li>
+      <li><strong>Nama:</strong> Binus Student Demo</li>
+    </ul>
+  </div>
+
+  <h2>5. Panduan Eksekusi Lengkap</h2>
+  <h3>A. Menjalankan Server Backend</h3>
+  <pre><code>cd backend
+npm install
+npm run seed      # Melakukan seeding data awal
+npm run dev       # Berjalan pada http://localhost:5000</code></pre>
+
+  <h3>B. Menjalankan Web Frontend</h3>
+  <pre><code>cd frontend
+npm install
+npm run dev       # Berjalan pada http://localhost:5173</code></pre>
+
+  <h3>C. Menjalankan Mobile App Expo</h3>
+  <pre><code>cd mobile
+npm install
+npx expo start    # Pindai QR Code dengan aplikasi Expo Go</code></pre>
+
+  <h2>6. Verifikasi Penyimpanan Data MongoDB & Kesesuaian Soal</h2>
+  <div class="card-box">
+    <p><strong>Apakah Database Menyimpan Data Ini?</strong></p>
+    <p><strong>YA, SELURUH DATA TERSIMPAN PERSISTEN PADA MONGODB ATLAS:</strong></p>
+    <ul>
+      <li><strong>Koleksi <code>users</code></strong>: Menyimpan registrasi, email, username, dan password terenkripsi <code>bcryptjs</code>.</li>
+      <li><strong>Koleksi <code>contents</code></strong>: Menyimpan 14 data film, serial TV, dan lagu lengkap dengan poster 100% aktif (200 OK), sinopsis, rating, dan trailer.</li>
+      <li><strong>Koleksi <code>favorites</code></strong>: Menyimpan preferensi personalisasi daftar tontonan (watchlist) milik pengguna.</li>
+      <li><strong>Koleksi <code>reviews</code></strong>: Menyimpan nilai rating bintang (1-5) dan teks ulasan komunitas.</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Status Kepatuhan Terhadap Soal:</strong> 100% Sesuai Instruksi (Web React JS 6 halaman, Mobile Expo 6 screen, Backend Node/Express, Database MongoDB Atlas, Film/TV/Musik, Trailer & Audio Player, Watchlist & Review).</p>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 BINUSFLIX — BINUS University • Disusun untuk Ujian Proyek Akhir Web & Mobile</p>
+  </div>
+</div>
+
+</body>
+</html>

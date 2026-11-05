@@ -1,0 +1,25 @@
+{
+  "name": "binusflex",
+  "version": "1.0.0",
+  "description": "BINUSFLEX — Specialized Entertainment Hub Platform for Movies, TV Series & Music",
+  "private": true,
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "mobile": "cd mobile && npx expo start",
+    "seed": "cd backend && npm run seed"
+  },
+  "keywords": [
+    "binus",
+    "binusflex",
+    "entertainment-hub",
+    "react",
+    "react-native",
+    "expo",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "BINUS University",
+  "license": "MIT"
+}
