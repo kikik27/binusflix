@@ -184,9 +184,15 @@ const ContentCard = ({
         {/* Match Score & Badges */}
         <div className="flex items-center gap-2 text-[11px] font-semibold">
           <span className="text-emerald-400 font-extrabold">{matchPercentage}% Cocok</span>
-          <span className="border border-white/20 px-1 py-0.2 rounded text-[9px] text-neutral-400 font-bold">
-            16+
-          </span>
+          {item.contentType === 'music' ? (
+            <span className="border border-emerald-500/30 bg-emerald-950/40 text-emerald-400 px-1.5 py-0.2 rounded text-[9px] font-bold">
+              LOSSLESS
+            </span>
+          ) : (
+            <span className="border border-white/20 px-1 py-0.2 rounded text-[9px] text-neutral-400 font-bold">
+              {item.rating >= 9 ? '18+' : item.rating >= 8.5 ? '16+' : '13+'}
+            </span>
+          )}
           <span className="text-neutral-400 truncate max-w-[80px]">
             {item.durationOrAlbum || '2j 10m'}
           </span>
