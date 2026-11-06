@@ -20,6 +20,16 @@
 
 ---
 
+## 🌐 URL Deployment Live (Production)
+- **Frontend Web App (Vercel):** [https://binusflix.vercel.app](https://binusflix.vercel.app)
+- **Backend REST API (Vercel):** [https://binusflix-api.vercel.app](https://binusflix-api.vercel.app)
+  - API Health Check: `https://binusflix-api.vercel.app/api/health`
+  - API Explore: `https://binusflix-api.vercel.app/api/content/explore`
+- **Mobile Expo Dashboard (EAS):** [https://expo.dev/accounts/kyy27/projects/binusflix](https://expo.dev/accounts/kyy27/projects/binusflix)
+  - EAS Project ID: `62ae8bf5-0fc2-449e-a9ce-fc900df4161c`
+
+---
+
 ## 🔑 Akun Demo Pengujian (Pre-Seeded)
 Tersedia akun demonstrasi siap pakai (lengkap dengan tombol **"Isi Otomatis"** di halaman Login):
 - **Email:** `demo@binus.ac.id`
