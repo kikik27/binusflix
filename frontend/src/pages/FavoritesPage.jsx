@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Heart, ArrowRight } from 'lucide-react';
+import { Heart, ArrowRight, AlertCircle, RefreshCw } from 'lucide-react';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import ContentCard from '../components/ContentCard';
@@ -12,6 +12,7 @@ const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
@@ -21,6 +22,7 @@ const FavoritesPage = () => {
 
   const fetchFavorites = async () => {
     setLoading(true);
+    setError(null);
     try {
       const res = await api.get('/favorites', {
         params: { type: activeFilter },
@@ -28,6 +30,8 @@ const FavoritesPage = () => {
       setFavorites(res.data.data || []);
     } catch (err) {
       console.error('Failed to load favorites:', err);
+      const msg = err.response?.data?.message || err.message || 'Gagal memuat daftar favorit';
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -85,6 +89,23 @@ const FavoritesPage = () => {
             })}
           </div>
         </div>
+
+      {/* Error Banner */}
+      {error && (
+        <div className="mb-6 bg-red-950/40 border border-red-500/30 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3 text-red-200 text-sm">
+            <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+            <span>{error}</span>
+          </div>
+          <button
+            onClick={fetchFavorites}
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#E50914] hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            Coba Lagi
+          </button>
+        </div>
+      )}
 
       {/* Grid of Favorites */}
       {loading ? (

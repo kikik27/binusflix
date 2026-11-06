@@ -30,8 +30,10 @@ const HomeScreen = ({ navigation }) => {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchData = async () => {
+    setError(null);
     try {
       const [exploreRes, bannersRes] = await Promise.all([
         api.get('/content/explore', {
@@ -48,6 +50,7 @@ const HomeScreen = ({ navigation }) => {
       setBanners(bannersRes.data.data || []);
     } catch (err) {
       console.warn('Error loading home data:', err.message);
+      setError(err.response?.data?.message || err.message || 'Koneksi ke server gagal. Pastikan internet aktif.');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -150,6 +153,17 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         ) : null}
       </View>
+
+      {/* Error Message & Retry Banner */}
+      {error && (
+        <View style={styles.errorBox}>
+          <Ionicons name="alert-circle-outline" size={20} color="#EF4444" style={{ marginRight: 8 }} />
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity style={styles.retryBtn} onPress={fetchData}>
+            <Text style={styles.retryBtnText}>Coba Lagi</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* 4. Billboard Hero (when not searching) */}
       {!searchQuery && heroItem && (
@@ -471,6 +485,35 @@ const styles = StyleSheet.create({
   loadingBox: {
     paddingVertical: 50,
     alignItems: 'center',
+  },
+  errorBox: {
+    marginHorizontal: 16,
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(239, 68, 68, 0.3)',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  errorText: {
+    flex: 1,
+    color: '#FCA5A5',
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  retryBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: COLORS.primary,
+    borderRadius: 6,
+    marginLeft: 8,
+  },
+  retryBtnText: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontWeight: '700',
   },
 });
 

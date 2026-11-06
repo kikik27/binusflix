@@ -7,57 +7,81 @@ const Content = require('../models/Content');
 // @route GET /api/content/explore
 const getExploreContent = async (req, res) => {
   try {
-    const { type = 'all', search = '', limit = 40 } = req.query;
+    let { type = 'all', search = '', page = 1, limit = 20 } = req.query;
 
-    // Check if searching or if type is specified
-    let items = [];
-    if (!search || search.trim().length === 0) {
-      // Query MongoDB Atlas Content collection
-      const filter = {};
-      if (type !== 'all') {
-        filter.contentType = type;
-      }
-      const dbContents = await Content.find(filter).limit(parseInt(limit, 10) || 40);
-      if (dbContents && dbContents.length > 0) {
-        items = dbContents.map((doc) => ({
-          id: doc.contentId,
-          contentType: doc.contentType,
-          title: doc.title,
-          subtitle: doc.subtitle,
-          overview: doc.overview,
-          posterUrl: doc.posterUrl,
-          backdropUrl: doc.backdropUrl,
-          releaseDate: doc.releaseDate,
-          rating: doc.rating,
-          voteCount: doc.voteCount,
-          genre: doc.genre,
-          durationOrAlbum: doc.durationOrAlbum,
-          trailerUrl: doc.trailerUrl,
-          trailerKey: doc.trailerKey,
-          previewUrl: doc.previewUrl,
-          cast: doc.cast,
-          featured: doc.featured,
-        }));
-      }
+    page = Math.max(1, parseInt(page, 10) || 1);
+    limit = Math.min(100, Math.max(1, parseInt(limit, 10) || 20));
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (type && type !== 'all') {
+      filter.contentType = type;
     }
 
-    // Fallback or external search query via service
-    if (items.length === 0) {
+    if (search && search.trim().length > 0) {
+      filter.$or = [
+        { title: { $regex: search.trim(), $options: 'i' } },
+        { subtitle: { $regex: search.trim(), $options: 'i' } },
+        { genre: { $regex: search.trim(), $options: 'i' } },
+        { overview: { $regex: search.trim(), $options: 'i' } },
+      ];
+    }
+
+    const totalItems = await Content.countDocuments(filter);
+    const dbContents = await Content.find(filter)
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    let items = dbContents.map((doc) => ({
+      id: doc.contentId,
+      contentType: doc.contentType,
+      title: doc.title,
+      subtitle: doc.subtitle,
+      overview: doc.overview,
+      posterUrl: doc.posterUrl,
+      backdropUrl: doc.backdropUrl,
+      releaseDate: doc.releaseDate,
+      rating: doc.rating,
+      voteCount: doc.voteCount,
+      genre: doc.genre,
+      durationOrAlbum: doc.durationOrAlbum,
+      trailerUrl: doc.trailerUrl,
+      trailerKey: doc.trailerKey,
+      previewUrl: doc.previewUrl,
+      cast: doc.cast,
+      featured: doc.featured,
+    }));
+
+    // Fallback search to external service if DB has 0 items
+    if (items.length === 0 && totalItems === 0) {
       items = await entertainmentService.getExploreContent({
         type,
         search,
-        limit: parseInt(limit, 10) || 40,
+        limit,
       });
     }
+
+    const totalPages = Math.ceil(totalItems / limit) || 1;
 
     res.json({
       success: true,
       count: items.length,
+      pagination: {
+        page,
+        limit,
+        totalItems,
+        totalPages,
+        hasMore: page < totalPages,
+      },
       data: items,
     });
   } catch (error) {
     console.error('[Content Explore Error]', error);
-    res.status(500).json({ message: error.message || 'Gagal memuat konten' });
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Gagal memuat katalog konten',
+    });
   }
 };
 

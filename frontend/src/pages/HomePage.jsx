@@ -6,7 +6,7 @@ import ContentRow from '../components/ContentRow';
 import Top10Row from '../components/Top10Row';
 import ContentCard from '../components/ContentCard';
 import TrailerModal from '../components/TrailerModal';
-import { Film, Tv, Music, Flame, Sparkles, Search, X } from 'lucide-react';
+import { Film, Tv, Music, Flame, Sparkles, Search, X, AlertCircle, RefreshCw } from 'lucide-react';
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +19,8 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState({ page: 1, totalPages: 1, hasMore: false });
   const [selectedTrailerItem, setSelectedTrailerItem] = useState(null);
 
   // Sync state if URL query param changes
@@ -40,32 +42,39 @@ const HomePage = () => {
     return () => clearTimeout(handler);
   }, [searchQuery]);
 
+  const fetchContent = async (targetPage = 1) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [exploreRes, bannersRes] = await Promise.all([
+        api.get('/content/explore', {
+          params: {
+            type: activeType,
+            search: debouncedQuery,
+            page: targetPage,
+            limit: 30,
+          },
+        }),
+        api.get('/content/featured'),
+      ]);
+
+      setItems(exploreRes.data.data || []);
+      if (exploreRes.data.pagination) {
+        setPagination(exploreRes.data.pagination);
+      }
+      setBanners(bannersRes.data.data || []);
+    } catch (err) {
+      console.error('Error fetching content:', err);
+      const msg = err.response?.data?.message || err.message || 'Gagal memuat konten dari server';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Fetch explore items and banners
   useEffect(() => {
-    const fetchContent = async () => {
-      setLoading(true);
-      try {
-        const [exploreRes, bannersRes] = await Promise.all([
-          api.get('/content/explore', {
-            params: {
-              type: activeType,
-              search: debouncedQuery,
-              limit: 50,
-            },
-          }),
-          api.get('/content/featured'),
-        ]);
-
-        setItems(exploreRes.data.data || []);
-        setBanners(bannersRes.data.data || []);
-      } catch (err) {
-        console.error('Error fetching content:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContent();
+    fetchContent(1);
   }, [activeType, debouncedQuery]);
 
   const handleTypeChange = (newType) => {
@@ -138,6 +147,25 @@ const HomePage = () => {
           )}
         </div>
       </div>
+
+      {/* Error Feedback Banner */}
+      {error && (
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 my-4">
+          <div className="bg-red-950/40 border border-red-500/30 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-3 text-red-200 text-sm">
+              <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+              <span>{error}</span>
+            </div>
+            <button
+              onClick={() => fetchContent(pagination.page || 1)}
+              className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#E50914] hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              Coba Lagi
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 3. Main Content: Search Grid Mode vs Netflix Horizontal Rails Mode */}
       {debouncedQuery ? (

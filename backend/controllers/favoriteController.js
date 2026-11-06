@@ -4,20 +4,42 @@ const Favorite = require('../models/Favorite');
 // @route GET /api/favorites
 const getFavorites = async (req, res) => {
   try {
-    const { type } = req.query;
+    let { type, page = 1, limit = 20 } = req.query;
+    page = Math.max(1, parseInt(page, 10) || 1);
+    limit = Math.min(100, Math.max(1, parseInt(limit, 10) || 20));
+    const skip = (page - 1) * limit;
+
     const filter = { userId: req.user._id };
     if (type && type !== 'all') {
       filter.contentType = type;
     }
 
-    const favorites = await Favorite.find(filter).sort({ createdAt: -1 });
+    const totalItems = await Favorite.countDocuments(filter);
+    const favorites = await Favorite.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    const totalPages = Math.ceil(totalItems / limit) || 1;
+
     res.json({
       success: true,
       count: favorites.length,
+      pagination: {
+        page,
+        limit,
+        totalItems,
+        totalPages,
+        hasMore: page < totalPages,
+      },
       data: favorites,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message || 'Gagal memuat daftar favorit' });
+    res.status(500).json({
+      success: false,
+      message: error.message || 'Gagal memuat daftar favorit',
+    });
   }
 };
 
