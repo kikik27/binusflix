@@ -14,9 +14,14 @@ Aplikasi katalog hiburan terintegrasi (Film, Serial TV, dan Musik) yang terdiri 
 | **Backend REST API** | Vercel Serverless | [https://binusflix-api.vercel.app](https://binusflix-api.vercel.app) | Base URL API publik |
 | **API Health Check** | Vercel Serverless | [https://binusflix-api.vercel.app/api/health](https://binusflix-api.vercel.app/api/health) | Endpoint cek status server |
 | **API Explore (Pagination)** | Vercel Serverless | [https://binusflix-api.vercel.app/api/content/explore?page=1&limit=10](https://binusflix-api.vercel.app/api/content/explore?page=1&limit=10) | Contoh endpoint katalog dengan pagination & limit |
-| **Mobile Build (EAS)** | Expo EAS | [Expo Dashboard Project](https://expo.dev/accounts/kyy27/projects/binusflix) | Dasbor build cloud & manajemen artefak APK |
+| **Download Android APK** | Expo EAS Artifacts | [Download APK Langsung](https://expo.dev/artifacts/eas/0EQ_KfHEjSmYLjKIx8GJFUXihfudxFjuDcf_nVcocNY.apk) | Berkas standalone APK v1.0.0 siap pasang di HP Android |
+| **Mobile Build (EAS)** | Expo EAS | [Expo Build Dashboard](https://expo.dev/accounts/kyy27/projects/binusflix/builds/f7cb5a6c-1c39-409e-b471-d1a32496c27a) | Dasbor build cloud & manajemen artefak APK |
+| **GitHub Release v1.0.0** | GitHub | [Release v1.0.0](https://github.com/kikik27/binusflix/releases/tag/v1.0.0) | Catatan rilis resmi & tautan unduhan APK |
+| **Figma Design File** | Figma (`.fig`) | [docs/binusflix_design.fig](docs/binusflix_design.fig) | Berkas desain native Figma (11 Frame: 5 Web, 5 Mobile, Design System) |
+| **FigCraft Native File** | FigCraft (`.figcraft`) | [docs/binusflix_design.figcraft](docs/binusflix_design.figcraft) | Berkas desain FigCraft (dapat diedit di FigCraft Desktop) |
+| **Design Overview Preview** | PNG Image | [docs/binusflix_design_overview.png](docs/binusflix_design_overview.png) | Render kanvas desain lengkap resolusi tinggi |
 | **Dokumentasi Lengkap** | Markdown | [docs/DOKUMENTASI_PROYEK.md](docs/DOKUMENTASI_PROYEK.md) | Penjelasan teknis arsitektur dan pemenuhan LO 3 |
-| **Design System (Figma)** | Markdown | [docs/FIGMA_DESIGN_SYSTEM.md](docs/FIGMA_DESIGN_SYSTEM.md) | Wireframe, token warna, tipografi, dan spesifikasi UI |
+| **Design System Specs** | Markdown | [docs/FIGMA_DESIGN_SYSTEM.md](docs/FIGMA_DESIGN_SYSTEM.md) | Wireframe, token warna, tipografi, dan spesifikasi UI |
 
 ---
 
@@ -170,7 +175,11 @@ binusflix/
 │   │   └── screens/    # Screen aplikasi (Home, Detail, Favorites, Login, Profile)
 │   ├── app.json        # Konfigurasi Expo & EAS Project ID
 │   └── eas.json        # Profil build EAS (preview APK & production)
-└── docs/               # Laporan Proyek & Spesifikasi Figma
+└── docs/               # Laporan Proyek & Spesifikasi Figma / FigCraft
+    ├── binusflix_design.fig         # Berkas Figma native (11 Frame)
+    ├── binusflix_design.figcraft    # Berkas FigCraft native
+    ├── binusflix_design_overview.png # Render kanvas menyeluruh resolusi tinggi
+    ├── figma_exports/               # 11 Frame PNG render individu
     ├── DOKUMENTASI_PROYEK.md
     ├── DOKUMENTASI_PROYEK.html
     └── FIGMA_DESIGN_SYSTEM.md

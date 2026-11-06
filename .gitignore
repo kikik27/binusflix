@@ -42,6 +42,8 @@ out/
 *.mobileprovision
 *.orig.*
 web-build/
+*.apk
+*.aab
 
 # Operating System & IDE Files
 .DS_Store
