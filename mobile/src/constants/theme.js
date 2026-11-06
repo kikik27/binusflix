@@ -29,8 +29,5 @@ export const COLORS = {
   inputBorder: 'rgba(255, 255, 255, 0.1)',
 };
 
-// Otomatis arahkan ke IP LAN aktif komputer (192.168.1.66) agar Expo Go di HP fisik langsung terhubung
-export const DEFAULT_API_URL = Platform.select({
-  web: 'http://localhost:5000/api',
-  default: 'http://192.168.1.66:5000/api',
-});
+// Terintegrasi langsung dengan Live Backend API di Vercel
+export const DEFAULT_API_URL = 'https://binusflix-api.vercel.app/api';

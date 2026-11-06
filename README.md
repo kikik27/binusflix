@@ -1,11 +1,11 @@
-# 🎬 BINUSFLEX
+# 🎬 BINUSFLIX
 ### Specialized Entertainment Hub Platform (Film, Serial TV, & Musik)
 **Proyek Tugas Akhir Pemrograman Web & Mobile — BINUS University**
 
 ---
 
 ## 📌 Ringkasan Proyek
-**BINUSFLEX** adalah platform hiburan digital (*mini specialized platform*) resmi bernuansa merah tegas Almamater BINUS yang menyatukan katalog **Film Layar Lebar**, **Serial Televisi**, dan **Musik** dalam satu ekosistem interaktif modern. Aplikasi ini tersedia dalam dua wujud:
+**BINUSFLIX** adalah platform hiburan digital (*mini specialized platform*) resmi bernuansa merah tegas Almamater BINUS yang menyatukan katalog **Film Layar Lebar**, **Serial Televisi**, dan **Musik** dalam satu ekosistem interaktif modern. Aplikasi ini tersedia dalam dua wujud:
 1. **Aplikasi Web**: Dibangun menggunakan **React JS**, Vite, Tailwind CSS, dan React Router.
 2. **Aplikasi Mobile**: Dibangun menggunakan **React Native & Expo (SDK 58)**, React Navigation, dan AsyncStorage (Dapat langsung dijalankan melalui QR code pada aplikasi **Expo Go**).
 3. **Backend REST API**: Menggunakan **Node.js / Express.js** dan basis data cloud **MongoDB Atlas**.
@@ -61,7 +61,7 @@ npx expo start
 
 ## 📂 Struktur Direktori
 ```
-binusflex/
+binusflix/
 ├── backend/            # Express.js REST API & MongoDB Mongoose Models
 │   ├── config/         # Koneksi MongoDB Atlas
 │   ├── controllers/    # Auth, Content, Favorite, Review Controllers

@@ -79,8 +79,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Server
-if (process.env.NODE_ENV !== 'test') {
+// Start Server only if executed directly
+if (require.main === module) {
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`\n======================================================`);
     console.log(`🚀 Entertainment Hub Backend Server Running!`);

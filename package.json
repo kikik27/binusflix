@@ -1,7 +1,7 @@
 {
-  "name": "binusflex",
+  "name": "binusflix",
   "version": "1.0.0",
-  "description": "BINUSFLEX — Specialized Entertainment Hub Platform for Movies, TV Series & Music",
+  "description": "BINUSFLIX — Specialized Entertainment Hub Platform for Movies, TV Series & Music",
   "private": true,
   "scripts": {
     "backend": "cd backend && npm run dev",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "binus",
-    "binusflex",
+    "binusflix",
     "entertainment-hub",
     "react",
     "react-native",

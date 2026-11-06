@@ -1,7 +1,7 @@
 {
-  "name": "binusflex-backend",
+  "name": "binusflix-backend",
   "version": "1.0.0",
-  "description": "Backend REST API for BINUSFLEX (Movies, TV Series, Music)",
+  "description": "Backend REST API for BINUSFLIX (Movies, TV Series, Music)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

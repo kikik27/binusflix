@@ -48,6 +48,8 @@ web-build/
 Thumbs.db
 .vscode/
 .idea/
+.vercel/
+*/.vercel/
 *.swp
 *.swo
 

@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "BINUSFLEX",
-    "slug": "binusflex",
+    "name": "BINUSFLIX",
+    "slug": "binusflix",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#07080A",
     "ios": {
+      "bundleIdentifier": "com.binusflix.app",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.binusflix.app",
       "adaptiveIcon": {
         "backgroundColor": "#07080A",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -20,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "62ae8bf5-0fc2-449e-a9ce-fc900df4161c"
+      }
+    },
+    "owner": "kyy27"
   }
 }
