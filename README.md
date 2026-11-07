@@ -319,8 +319,3 @@ binusflix/
 │   └── eas.json        # Profil build cloud EAS (preview APK & production)
 └── README.md           # Dokumentasi arsitektur, user diagram, & panduan teknis
 ```
-
----
-
-## 🔒 Catatan Keamanan
-Kredensial database MongoDB Atlas dan JWT Secret tidak disimpan di dalam repositori publik. Konfigurasi untuk lingkungan live diinjeksi secara aman melalui Environment Variables pada Vercel dan EAS Secret.
