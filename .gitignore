@@ -60,3 +60,6 @@ Thumbs.db
 .eslintcache
 .cache/
 .turbo/
+
+# Documentation & Design Assets (Local Only - Ignored from Git)
+docs/
